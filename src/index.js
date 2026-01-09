@@ -21,29 +21,9 @@ async function getUserData(id) {
     vault(id),
   ]);
 
-  return {
-    id: id,
-    name: personalInfo.name,
-    username: basicInfo.username,
-    email: personalInfo.email,
-    address: {
-      street: personalInfo.address.street,
-      suite: personalInfo.address.suite,
-      city: personalInfo.address.city,
-      zipcode: personalInfo.address.zipcode,
-      geo: {
-        lat: personalInfo.address.geo.lat,
-        lng: personalInfo.address.geo.lng,
-      },
-    },
-    phone: personalInfo.phone,
-    website: basicInfo.website,
-    company: {
-      name: basicInfo.company.name,
-      catchPhrase: basicInfo.company.catchPhrase,
-      bs: basicInfo.company.bs,
-    },
-  };
+  return { id, ...basicInfo, ...personalInfo };
 }
 
-export { getUserData };
+getUserData(3).then((result) => {
+  console.log(result);
+});
